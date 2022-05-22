@@ -1,15 +1,21 @@
-# Herosaver
+# Herosaver-Chibify
 
-Methodology to Save Configuration and STLs from websites using the THREE.JS framework for academic and educational purposes.
+Based on the original Herosaver and the [fork by notnullgames](https://notnullgames.github.io/Herosaver/), this version has been modified to work with chibify. It might eventually also support heroforge, but I have no plans to go back to it at the moment.
 
-Please **Always** think about the **developers** of such websites and try to **support them whenever possible**, as without them, there would be no such tools.
-
-This is based on some ideas from [TeaWithLucas](https://github.com/TeaWithLucas), with a focus on making UI lighter & code simpler. I modernized the code a bit (`class`, `let`, `const`, arrow-fucntions, etc) and got rid of the inline UI (I like it better as a bookmarklet.)
+This tool is explicitly to explore the inner workings of these character creators, and should not be used for anything other than educational purposes.
 
 ## Usage
 
-Learn more about how to use this, [here](https://notnullgames.github.io/Herosaver/)
+```
+npm install
+npm start
+```
 
-## todo
+Navigate to [chibbify.com]() and open your console, paste the following:
 
-- add greasemonkey support back
+```
+g = u => fetch(u || 'http://localhost:1234/herosaver.js').then(r => r.text()).then(eval)
+
+// get STL
+g().then(() => saveGLTF())
+```
