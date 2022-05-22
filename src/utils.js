@@ -1,6 +1,6 @@
 // this stuff is all basically from original
 
-import { MeshBasicMaterial, Group, Mesh, Matrix4, Vector3, Vector4 } from 'three'
+import { MeshBasicMaterial, Group, Mesh, Matrix4, Vector3, Vector4, Skeleton } from 'three'
 import { SubdivisionModifier } from 'three/examples/jsm/modifiers/SubdivisionModifier.js'
 
 export const { character } = window.CK
@@ -34,13 +34,11 @@ export const process = (object3d, smooth, mirroredPose) => {
   const material = new MeshBasicMaterial()
   const group = new Group()
 
+  var isABone = [];
   object3d.traverseVisible(mesh => {
-    if (mesh.isMesh) {
-      if (!mesh.isMesh) {
-        console.warn('Mesh type unsupported', mesh)
-        return
-      }
+    console.log(mesh);
 
+    if (mesh.isMesh) {
       const vertex = new Vector3()
       let i
       let l = []
@@ -148,7 +146,13 @@ export const process = (object3d, smooth, mirroredPose) => {
       }
 
       group.add(new Mesh(newGeometry, material))
+    } else if (mesh.type === 'Bone') {
+      isABone.push(mesh);
     }
-  })
+  });
+
+  const skeleton = new Skeleton(isABone);
+  console.log(skeleton);
+  group.bind(skeleton);
   return group
 }
