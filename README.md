@@ -11,7 +11,7 @@ npm install
 npm start
 ```
 
-Navigate to [chibbify.com]() and open your console, paste the following:
+Navigate to [chibify.com](https://www.chibify.com/) and open your console, paste the following:
 
 ```
 g = u => fetch(u || 'http://localhost:1234/herosaver.js').then(r => r.text()).then(eval)
